@@ -31,11 +31,10 @@ Para poder correr los test es necesario correr el siguiente comando
 ```bash
 pnpm test
 ```
-
 o
 
 ```bash
-pnpm test:watch
+pnpm test:ui
 ```
 
-Para activar el modo watch
+Para poder correr los script y visualizarlos en una web

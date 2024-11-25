@@ -1,3 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
+
 import { CoffeeMachine } from '../coffeeMachine';
 import { CoffeeMaker } from '../models/coffeeMaker';
 import { Cup } from '../models/cup';
@@ -28,61 +30,60 @@ describe('CoffeeMachine', () => {
   })
 
 
-  test("Debe devolver un vaso SMALL", ()=>{
+  it("Debe devolver un vaso SMALL", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     expect(cup).toBe(coffeeMachine.getSmallCups())
   })
 
-  test("Debe devolver un vaso MEDIUM", ()=>{
+  it("Debe devolver un vaso MEDIUM", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.MEDIUM)
     expect(cup).toBe(coffeeMachine.getMediumCups())
   })
 
-  test("Debe devolver un vaso LARGE", ()=>{
+  it("Debe devolver un vaso LARGE", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.LARGE)
     expect(cup).toBe(coffeeMachine.getLargeCups())
   })
 
-  test("Debe devolver no hay vasos disponibles", ()=>{
+  it("Debe devolver no hay vasos disponibles", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     const result = coffeeMachine.getCoffeeCups(cup!, 10, 2)
     expect(result).toBe("No hay Vasos")
   })
 
-  test("Debe devolver no hay café disponible", ()=>{
+  it("Debe devolver no hay café disponible", ()=>{
     coffeeMachine.setCoffeeMaker(new CoffeeMaker(5))
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     const result = coffeeMachine.getCoffeeCups(cup!, 2, 3)
-    console.log(result)
     expect(result).toBe("No hay Cafe")
   })
 
-  test("Debe devolver no hay azucar disponible", ()=>{
+  it("Debe devolver no hay azucar disponible", ()=>{
     coffeeMachine.setSugarDispenser(new SugarDispenser(2))
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     const result = coffeeMachine.getCoffeeCups(cup!, 2, 3)
     expect(result).toBe("No hay Azucar")
   })
 
-  test("Debe restar cafe",()=>{
+  it("Debe restar cafe",()=>{
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     coffeeMachine.getCoffeeCups(cup!, 3, 3)
     expect(coffeeMachine.getCoffeeMaker()?.getCoffeeAmount()).toBe(41)
   })
 
-  test("Debe restar vaso", ()=>{
+  it("Debe restar vaso", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     coffeeMachine.getCoffeeCups(cup!, 1, 3)
     expect(coffeeMachine.getSmallCups()?.getQuantity()).toBe(4)
   })
 
-  test("Debe restar azucar", ()=>{
+  it("Debe restar azucar", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.SMALL)
     coffeeMachine.getCoffeeCups(cup!, 1, 3)
     expect(coffeeMachine.getSugarDispenser()?.getSugarAmount()).toBe(17)
   })
 
-  test("Debe devolver Buen prevecho", ()=>{
+  it("Debe devolver Buen prevecho", ()=>{
     const cup = coffeeMachine.getCupSize(CupSize.LARGE)
     const result = coffeeMachine.getCoffeeCups(cup!, 1, 3)
     expect(result).toBe("Buen provecho")
