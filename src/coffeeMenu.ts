@@ -43,7 +43,7 @@ export class CoffeeMenu {
     console.log(`Vasos pequeños: ${this.coffeeMachine.getSmallCups()?.getQuantity()}`);
     console.log(`Vasos medianos: ${this.coffeeMachine.getMediumCups()?.getQuantity()}`);
     console.log(`Vasos grandes: ${this.coffeeMachine.getLargeCups()?.getQuantity()}`);
-    console.log(`Azúcar disponible: ${this.coffeeMachine.getSugarDispenser()?.getSugarAmount()} cucharadas`);
+    console.log(`Azúcar disponible: ${this.coffeeMachine.getSugarDispenser()?.getSugarAmount()} bolsitas`);
     console.log('===========================\n');
   }
 
@@ -97,8 +97,8 @@ export class CoffeeMenu {
         return;
     }
 
-    const sugarAmount = parseInt(await this.askQuestion('Canidad de azúcar (0-5): '));
-    if (isNaN(sugarAmount) || sugarAmount < 0 || sugarAmount > 5) {
+    const sugarAmount = parseInt(await this.askQuestion('Canidad de azúcar (0-3) bolsitas : '));
+    if (isNaN(sugarAmount) || sugarAmount < 0 || sugarAmount > 3) {
       console.log('Cantidad de azúcar no válida');
       return;
     }
